@@ -11,6 +11,8 @@ SCALA_VERSION="2.10.3"
 
 if [[ "0.7.3 0.8.0 0.8.1" =~ $SPARK_VERSION ]]; then
   SCALA_VERSION="2.9.3"
+elif [[ "2.0.0" =~ $SPARK_VERSION ]]; then
+  SCALA_VERSION="2.10.8"
 fi
 
 echo "Unpacking Scala"

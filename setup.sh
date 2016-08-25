@@ -7,7 +7,8 @@ rm -f jdk-8u74-linux-x64.rpm
 sudo yum install -y -q pssh
 curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 sudo yum install -y -q sbt
-
+# add spark to path
+sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
 # usage: echo_cwmastertime_diff name start_time end_time
 echo_time_diff () {
   local format='%Hh %Mm %Ss'
