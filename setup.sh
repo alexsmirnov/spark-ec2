@@ -1,7 +1,6 @@
 #!/bin/bash
 wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.rpm"
 yum -y localinstall jdk-8u74-linux-x64.rpm
-/usr/sbin/alternatives --auto java
 sed -i 's!/usr/lib/jvm/java-1.7.0!/usr/java/jdk1.8.0_74!' /root/.bash_profile
 rm -f jdk-8u74-linux-x64.rpm
 sudo yum install -y -q pssh
@@ -9,6 +8,7 @@ curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm
 sudo yum install -y -q sbt
 # add spark to path
 sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
+/usr/sbin/alternatives --auto java
 # usage: echo_cwmastertime_diff name start_time end_time
 echo_time_diff () {
   local format='%Hh %Mm %Ss'
