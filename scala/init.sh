@@ -16,7 +16,7 @@ elif [[ "2.0.0" =~ $SPARK_VERSION ]]; then
 fi
 
 echo "Unpacking Scala"
-wget http://s3.amazonaws.com/spark-related-packages/scala-$SCALA_VERSION.tgz
+wget http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz
 tar xvzf scala-*.tgz > /tmp/spark-ec2_scala.log
 rm scala-*.tgz
 mv `ls -d scala-* | grep -v ec2` scala
