@@ -38,10 +38,6 @@ case "$HADOOP_MAJOR_VERSION" in
         tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
         rm hadoop-*.tar.gz
         mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
-        wget http://central.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.7.2/hadoop-aws-2.7.2.jar
-        mv hadoop-aws-2.7.0.jar ephemeral-hdfs/share/hadoop/hdfs/lib/
-        wget http://central.maven.org/maven2/com/amazonaws/aws-java-sdk/1.7.4/aws-java-sdk-1.7.4.jar
-        mv aws-java-sdk-1.7.4.jar ephemeral-hdfs/share/hadoop/hdfs/lib/
 	;;
       2.0.*)
         HADOOP_VERSION=2.7.2
@@ -50,10 +46,6 @@ case "$HADOOP_MAJOR_VERSION" in
         tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
         rm hadoop-*.tar.gz
         mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
-        wget http://central.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.7.2/hadoop-aws-2.7.2.jar
-        mv hadoop-aws-2.7.2.jar ephemeral-hdfs/share/hadoop/hdfs/lib/
-        wget http://central.maven.org/maven2/com/amazonaws/aws-java-sdk/1.7.4/aws-java-sdk-1.7.4.jar
-        mv aws-java-sdk-1.7.4.jar ephemeral-hdfs/share/hadoop/hdfs/lib/
 	;;
       *)
         HADOOP_VERSION=2.4.0
@@ -75,5 +67,10 @@ case "$HADOOP_MAJOR_VERSION" in
      return 1
 esac
 /root/spark-ec2/copy-dir /root/ephemeral-hdfs
+
+# wget http://central.maven.org/maven2/org/apache/hadoop/hadoop-aws/2.7.2/hadoop-aws-2.7.2.jar
+# mv hadoop-aws-*.jar ephemeral-hdfs/share/hadoop/hdfs/lib/
+# wget http://central.maven.org/maven2/com/amazonaws/aws-java-sdk/1.7.4/aws-java-sdk-1.7.4.jar
+# mv aws-java-sdk-1.7.4.jar ephemeral-hdfs/share/hadoop/hdfs/lib/
 
 popd > /dev/null
