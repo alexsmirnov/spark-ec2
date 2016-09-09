@@ -9,6 +9,8 @@ rm -f jdk-8u74-linux-x64.rpm
 # add spark to path
 sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
 /usr/sbin/alternatives --auto java
+#install native math libraries
+yum install -y --enablerepo=epel openblas atlas
 # Disable Transparent Huge Pages (THP)
 # THP can result in system thrashing (high sys usage) due to frequent defrags of memory.
 # Most systems recommends turning THP off.
