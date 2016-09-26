@@ -1,0 +1,33 @@
+#!/bin/sh
+
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# Preserve the user's CWD so that relative paths are passed correctly to
+#+ the underlying Python script.
+# --authorized-address=209.12.74.162/32 --ebs-vol-size=50 --no-ganglia 
+SPARK_EC2_DIR="$(dirname "$0")"
+S3_CREDS="$(awk '/^\[analytics-event-writer/{flag=1;next}/^region/{flag=0}flag'  ${HOME}/.aws/config | sed -e 's/^aws_access_key_id[ ]*=[ ]*/--aws-access-key-id=/' -e 's/^aws_secret_access_key[ ]*=[ ]*/--aws-secret-access-key=/' | tr  '\n' ' ')"
+python -Wdefault "${SPARK_EC2_DIR}/spark_ec2.py" \
+    --key-pair=mulesoft-analytics-qa-central -i ${HOME}/.mulessh/mulesoft-analytics-qa-central.pem \
+    --instance-type=m3.2xlarge --master-instance-type=m3.large --slaves=2 --hadoop-major-version=yarn \
+    --region=us-east-1 --zone=us-east-1a \
+    '--additional-tags=Owner:alexander.smirnov@mulesoft.com,ROLE:Spark,Version:2.0,ENV:qa,kind:experiment' --delete-groups \
+    --spark-ec2-git-repo=https://github.com/alexsmirnov/spark-ec2 --spark-ec2-git-branch=spark-2.0 \
+    --subnet-id=subnet-32460959 --vpc-id=vpc-7f460914 --private-ips --additional-security-group=sg-576cd72d $S3_CREDS \
+    "$@"
