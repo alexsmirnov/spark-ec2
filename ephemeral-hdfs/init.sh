@@ -39,9 +39,17 @@ case "$HADOOP_MAJOR_VERSION" in
         rm hadoop-*.tar.gz
         mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
 	;;
-      2.0.*)
+      2.0.0)
         HADOOP_VERSION=2.7.2
         wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz
+        echo "Unpacking Hadoop"
+        tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
+        rm hadoop-*.tar.gz
+        mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
+	;;
+      2.0.*)
+        HADOOP_VERSION=2.7.3
+        wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
         echo "Unpacking Hadoop"
         tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
         rm hadoop-*.tar.gz
