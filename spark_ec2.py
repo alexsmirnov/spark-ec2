@@ -51,7 +51,7 @@ else:
     raw_input = input
     xrange = range
 
-SPARK_EC2_VERSION = "2.0.1"
+SPARK_EC2_VERSION = "2.1.0"
 SPARK_EC2_DIR = os.path.dirname(os.path.realpath(__file__))
 
 VALID_SPARK_VERSIONS = set([
@@ -80,6 +80,8 @@ VALID_SPARK_VERSIONS = set([
     "1.6.2",
     "2.0.0",
     "2.0.1",
+    "2.0.2",
+    "2.1.0",
 ])
 
 SPARK_TACHYON_MAP = {
@@ -102,6 +104,8 @@ SPARK_TACHYON_MAP = {
     "1.6.2": ("alluxio","1.2.0"),
     "2.0.0": ("alluxio","1.2.0"),
     "2.0.1": ("alluxio","1.3.0"),
+    "2.0.2": ("alluxio","1.3.0"),
+    "2.1.0": ("alluxio","1.3.0"),
 }
 
 DEFAULT_SPARK_VERSION = SPARK_EC2_VERSION
@@ -109,7 +113,7 @@ DEFAULT_SPARK_GITHUB_REPO = "https://github.com/apache/spark"
 
 # Default location to get the spark-ec2 scripts (and ami-list) from
 DEFAULT_SPARK_EC2_GITHUB_REPO = "https://github.com/alexsmirnov/spark-ec2"
-DEFAULT_SPARK_EC2_BRANCH = "spark-2.0"
+DEFAULT_SPARK_EC2_BRANCH = "spark-2.1"
 
 
 def setup_external_libs(libs):
@@ -827,7 +831,7 @@ def setup_cluster(conn, master_nodes, slave_nodes, opts, deploy_ssh_key):
             ssh_write(slave_address, opts, ['tar', 'x'], dot_ssh_tar)
 
     modules = ['spark', 'ephemeral-hdfs', 'persistent-hdfs',
-               'mapreduce', 'spark-standalone', 'rstudio']
+               'mapreduce', 'spark-standalone', 'zeppelin']
 
     if opts.hadoop_major_version == "1":
         modules = list(filter(lambda x: x != "mapreduce", modules))
@@ -1074,7 +1078,7 @@ def deploy_files(conn, root_dir, opts, master_nodes, slave_nodes, modules):
         spark_v = get_validate_spark_version(opts.spark_version, opts.spark_git_repo)
         tachyon_v = get_tachyon_version(spark_v)[1]
         tachyon_n = get_tachyon_version(spark_v)[0]
-        modules.append(get_tachyon_version(spark_v)[0])
+        modules.append(tachyon_n)
     else:
         # Spark-only custom deploy
         spark_v = "%s|%s" % (opts.spark_git_repo, opts.spark_version)

@@ -34,37 +34,29 @@ case "$HADOOP_MAJOR_VERSION" in
       1.6.*)
         HADOOP_VERSION=2.6.3
         wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.6.3/hadoop-2.6.3.tar.gz
-        echo "Unpacking Hadoop"
-        tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
-        rm hadoop-*.tar.gz
-        mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
 	;;
       2.0.0)
         HADOOP_VERSION=2.7.2
         wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz
-        echo "Unpacking Hadoop"
-        tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
-        rm hadoop-*.tar.gz
-        mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
 	;;
       2.0.*)
         HADOOP_VERSION=2.7.3
         wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
-        echo "Unpacking Hadoop"
-        tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
-        rm hadoop-*.tar.gz
-        mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
+	;;
+      2.1.*)
+        HADOOP_VERSION=2.7.3
+        wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 	;;
       *)
         HADOOP_VERSION=2.4.0
 	    wget http://s3.amazonaws.com/spark-related-packages/hadoop-${HADOOP_VERSION}.tar.gz
-        echo "Unpacking Hadoop"
-        tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
-        rm hadoop-*.tar.gz
-        mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
 	;;
     esac
 
+    echo "Unpacking Hadoop"
+    tar xvzf hadoop-*.tar.gz > /tmp/spark-ec2_hadoop.log
+    rm hadoop-*.tar.gz
+    mv hadoop-${HADOOP_VERSION}/ ephemeral-hdfs/
     # Have single conf dir
     rm -rf /root/ephemeral-hdfs/etc/hadoop/
     ln -s /root/ephemeral-hdfs/conf /root/ephemeral-hdfs/etc/hadoop
