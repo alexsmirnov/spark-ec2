@@ -7,7 +7,8 @@ sudo yum install -y -q pssh
 curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 sudo yum install -y -q sbt
 #install native math libraries
-yum install -y --enablerepo=epel openblas atlas python26-numpy python27-numpy python26-matplotlib python27-matplotlib
+alternatives --set python /usr/bin/python2.7
+yum install -y --enablerepo=epel openblas atlas python27-numpy python27-matplotlib
 # add spark to path
 sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
 /usr/sbin/alternatives --auto java
