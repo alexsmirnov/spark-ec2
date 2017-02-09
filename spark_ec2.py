@@ -105,7 +105,7 @@ SPARK_TACHYON_MAP = {
     "2.0.0": ("alluxio","1.2.0"),
     "2.0.1": ("alluxio","1.3.0"),
     "2.0.2": ("alluxio","1.3.0"),
-    "2.1.0": ("alluxio","1.3.0"),
+    "2.1.0": ("alluxio","1.4.0"),
 }
 
 DEFAULT_SPARK_VERSION = SPARK_EC2_VERSION
