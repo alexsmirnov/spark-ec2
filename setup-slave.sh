@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo yum update -y -q
 # Install oracle jdk
 wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.rpm"
 yum -y localinstall jdk-8u74-linux-x64.rpm
@@ -10,8 +11,11 @@ rm -f jdk-8u74-linux-x64.rpm
 sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
 /usr/sbin/alternatives --auto java
 #install native math libraries
-alternatives --set python /usr/bin/python2.7
-yum install -y --enablerepo=epel openblas atlas python27-numpy
+sudo alternatives --set python /usr/bin/python2.7
+sudo yum install -y --enablerepo=epel openblas atlas python27-pip python27-devel # python27-numpy 
+sudo  pip install --upgrade pip
+/usr/local/bin/pip install tensorflow
+
 # Disable Transparent Huge Pages (THP)
 # THP can result in system thrashing (high sys usage) due to frequent defrags of memory.
 # Most systems recommends turning THP off.

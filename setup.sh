@@ -1,17 +1,20 @@
 #!/bin/bash
+sudo yum update -y -q
 wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.rpm"
-yum -y localinstall jdk-8u74-linux-x64.rpm
+sudo yum -y localinstall jdk-8u74-linux-x64.rpm
 sed -i 's!/usr/lib/jvm/java-1.7.0!/usr/java/jdk1.8.0_74!' /root/.bash_profile
 rm -f jdk-8u74-linux-x64.rpm
 sudo yum install -y -q pssh
 curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
 sudo yum install -y -q sbt
 #install native math libraries
-alternatives --set python /usr/bin/python2.7
-yum install -y --enablerepo=epel openblas atlas python27-numpy python27-matplotlib
+sudo alternatives --set python /usr/bin/python2.7
+sudo yum install -y --enablerepo=epel openblas atlas python27-matplotlib python27-pip python27-devel # python27-numpy 
+sudo  pip install --upgrade pip
+/usr/local/bin/pip install tensorflow
 # add spark to path
 sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
-/usr/sbin/alternatives --auto java
+sudo /usr/sbin/alternatives --auto java
 # usage: echo_cwmastertime_diff name start_time end_time
 echo_time_diff () {
   local format='%Hh %Mm %Ss'
