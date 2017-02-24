@@ -8,12 +8,12 @@ ZEPPELIN_CONF_DIR="${ZEPPELIN_HOME}/conf"
 
 ZEPPELIN_NOTEBOOK_DIR="${ZEPPELIN_HOME}/notebook"
 ZEPPELIN_MEM=-Xmx1024m
-
+if [[ ! -d  "${ZEPPELIN_HOME}" ]] ; then
 curl http://mirrors.ibiblio.org/apache/zeppelin/zeppelin-${zeppelin_ver}/zeppelin-${zeppelin_ver}-bin-netinst.tgz | \
           tar -zx -C /root
 mv "/root/zeppelin-${zeppelin_ver}-bin-netinst" "${ZEPPELIN_HOME}"
 ${ZEPPELIN_HOME}/bin/install-interpreter.sh --name md,python,shell,file,alluxio
 # additional interpreters
 ${ZEPPELIN_HOME}/bin/install-interpreter.sh --name jdbc,cassandra,angular
-
+fi
 popd > /dev/null
