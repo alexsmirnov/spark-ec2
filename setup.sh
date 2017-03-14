@@ -3,7 +3,8 @@ sudo yum update -y -q
 if java -version 2>&1 | grep -q '1\.8\.0_121' ; then
     echo "all installed"
 else
-    wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/jdk-8u121-linux-x64.rpm"
+    wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" \
+       "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm"
     sudo yum -y localinstall jdk-8u121-linux-x64.rpm
     sed -i 's!/usr/lib/jvm/java-1.7.0!/usr/java/jdk1.8.0_121!' /root/.bash_profile
     rm -f jdk-8u121-linux-x64.rpm

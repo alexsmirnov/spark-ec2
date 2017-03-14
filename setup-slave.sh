@@ -4,7 +4,8 @@ if java -version 2>&1 | grep -q '1\.8\.0_121' ; then
     echo "all installed"
 else
     # Install oracle jdk
-    wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/jdk-8u121-linux-x64.rpm"
+    wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" \
+       "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm"
     yum -y localinstall jdk-8u121-linux-x64.rpm
     sed -i 's!JAVA_HOME=.*$!JAVA_HOME=/usr/java/jdk1.8.0_121!' /root/.bash_profile
     # Load the environment variables specific to this AMI
