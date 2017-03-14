@@ -1,21 +1,24 @@
 #!/bin/bash
 sudo yum update -y -q
-# Install oracle jdk
-wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/8u74-b02/jdk-8u74-linux-x64.rpm"
-yum -y localinstall jdk-8u74-linux-x64.rpm
-sed -i 's!/usr/lib/jvm/java-1.7.0!/usr/java/jdk1.8.0_74!' /root/.bash_profile
-# Load the environment variables specific to this AMI
-source /root/.bash_profile
-rm -f jdk-8u74-linux-x64.rpm
-# add spark to path
-sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
-/usr/sbin/alternatives --auto java
-#install native math libraries
-sudo alternatives --set python /usr/bin/python2.7
-sudo yum install -y --enablerepo=epel openblas atlas python27-pip python27-devel # python27-numpy 
-sudo  pip install --upgrade pip
-/usr/local/bin/pip install tensorflow
-
+if java -version 2>&1 | grep -q '1\.8\.0_121' ; then
+    echo "all installed"
+else
+    # Install oracle jdk
+    wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/jdk-8u121-linux-x64.rpm"
+    yum -y localinstall jdk-8u121-linux-x64.rpm
+    sed -i 's!JAVA_HOME=.*$!JAVA_HOME=/usr/java/jdk1.8.0_121!' /root/.bash_profile
+    # Load the environment variables specific to this AMI
+    source /root/.bash_profile
+    rm -f jdk-8u121-linux-x64.rpm
+    # add spark to path
+    sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
+    /usr/sbin/alternatives --auto java
+    #install native math libraries
+    sudo alternatives --set python /usr/bin/python2.7
+    sudo yum install -y --enablerepo=epel openblas atlas python27-pip python27-devel # python27-numpy 
+    sudo  pip install --upgrade pip
+    /usr/local/bin/pip install tensorflow
+fi
 # Disable Transparent Huge Pages (THP)
 # THP can result in system thrashing (high sys usage) due to frequent defrags of memory.
 # Most systems recommends turning THP off.
