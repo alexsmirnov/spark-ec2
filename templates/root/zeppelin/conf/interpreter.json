@@ -130,7 +130,7 @@
       "name": "spark",
       "group": "spark",
       "properties": {
-        "spark.executor.memory": "",
+        "spark.executor.memory": "8G",
         "args": "",
         "zeppelin.spark.printREPLOutput": "true",
         "spark.cores.max": "",
@@ -138,7 +138,7 @@
         "zeppelin.spark.sql.stacktrace": "false",
         "zeppelin.spark.importImplicit": "true",
         "zeppelin.spark.concurrentSQL": "false",
-        "zeppelin.spark.useHiveContext": "true",
+        "zeppelin.spark.useHiveContext": "false",
         "zeppelin.pyspark.python": "python",
         "zeppelin.dep.localrepo": "local-repo",
         "zeppelin.interpreter.localRepo": "/root/zeppelin/local-repo/2CATNF58N",
