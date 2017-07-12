@@ -82,6 +82,8 @@ VALID_SPARK_VERSIONS = set([
     "2.0.1",
     "2.0.2",
     "2.1.0",
+    "2.1.1",
+    "2.2.0",
 ])
 
 SPARK_TACHYON_MAP = {
@@ -106,6 +108,8 @@ SPARK_TACHYON_MAP = {
     "2.0.1": ("alluxio","1.3.0"),
     "2.0.2": ("alluxio","1.3.0"),
     "2.1.0": ("alluxio","1.4.0"),
+    "2.1.1": ("alluxio","1.4.0"),
+    "2.2.0": ("alluxio","1.5.0"),
 }
 
 DEFAULT_SPARK_VERSION = SPARK_EC2_VERSION
@@ -113,7 +117,7 @@ DEFAULT_SPARK_GITHUB_REPO = "https://github.com/apache/spark"
 
 # Default location to get the spark-ec2 scripts (and ami-list) from
 DEFAULT_SPARK_EC2_GITHUB_REPO = "https://github.com/alexsmirnov/spark-ec2"
-DEFAULT_SPARK_EC2_BRANCH = "spark-2.1"
+DEFAULT_SPARK_EC2_BRANCH = "spark-2.2"
 
 
 def setup_external_libs(libs):

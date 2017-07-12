@@ -42,7 +42,11 @@ case "$HADOOP_MAJOR_VERSION" in
            HADOOP_VERSION=2.7.3
            wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
         ;;
-      2.1.*)
+      2.*.*)
+           HADOOP_VERSION=2.7.3
+           wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
+        ;;
+      2.2.*)
            HADOOP_VERSION=2.7.3
            wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
         ;;

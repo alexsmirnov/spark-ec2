@@ -47,6 +47,10 @@ case "$HADOOP_MAJOR_VERSION" in
         HADOOP_VERSION=2.7.3
         wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
 	;;
+      2.2.*)
+        HADOOP_VERSION=2.7.3
+        wget http://mirrors.ocf.berkeley.edu/apache/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
+	;;
       *)
         HADOOP_VERSION=2.4.0
 	    wget http://s3.amazonaws.com/spark-related-packages/hadoop-${HADOOP_VERSION}.tar.gz
