@@ -1,13 +1,13 @@
 #!/bin/bash
 sudo yum update -y -q
-if java -version 2>&1 | grep -q '1\.8\.0_121' ; then
+if java -version 2>&1 | grep -q '1\.8\.0_131' ; then
     echo "all installed"
 else
     wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" \
-       "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm"
-    sudo yum -y localinstall jdk-8u121-linux-x64.rpm
-    sed -i 's!/usr/lib/jvm/java-1.7.0!/usr/java/jdk1.8.0_121!' /root/.bash_profile
-    rm -f jdk-8u121-linux-x64.rpm
+       "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm"
+    sudo yum -y localinstall jdk-8u131-linux-x64.rpm
+    sed -i 's!/usr/lib/jvm/java-1.7.0!/usr/java/jdk1.8.0_131!' /root/.bash_profile
+    rm -f jdk-8u131-linux-x64.rpm
     sudo yum install -y -q pssh
     curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
     sudo yum install -y -q sbt

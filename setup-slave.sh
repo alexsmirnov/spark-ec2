@@ -1,16 +1,16 @@
 #!/bin/bash
 sudo yum update -y -q
-if java -version 2>&1 | grep -q '1\.8\.0_121' ; then
+if java -version 2>&1 | grep -q '1\.8\.0_131' ; then
     echo "all installed"
 else
     # Install oracle jdk
     wget --no-cookies --header "Cookie: gpw_e24=xxx; oraclelicense=accept-securebackup-cookie;" \
-       "http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm"
-    yum -y localinstall jdk-8u121-linux-x64.rpm
-    sed -i 's!JAVA_HOME=.*$!JAVA_HOME=/usr/java/jdk1.8.0_121!' /root/.bash_profile
+       "http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm"
+    yum -y localinstall jdk-8u131-linux-x64.rpm
+    sed -i 's!JAVA_HOME=.*$!JAVA_HOME=/usr/java/jdk1.8.0_131!' /root/.bash_profile
     # Load the environment variables specific to this AMI
     source /root/.bash_profile
-    rm -f jdk-8u121-linux-x64.rpm
+    rm -f jdk-8u131-linux-x64.rpm
     # add spark to path
     sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
     /usr/sbin/alternatives --auto java

@@ -22,7 +22,7 @@ else
         wget http://alluxio.org/downloads/files/$TACHYON_VERSION/alluxio-$TACHYON_VERSION-cdh4-bin.tar.gz
       else
         case "$SPARK_VERSION" in
-              2.0.*)
+              2.*)
                 wget http://alluxio.org/downloads/files/$TACHYON_VERSION/alluxio-$TACHYON_VERSION-hadoop2.7-bin.tar.gz
                 ;;
               1.6.*)
