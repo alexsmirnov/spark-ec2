@@ -18,7 +18,7 @@ else
     sudo alternatives --set python /usr/bin/python2.7
     sudo yum install -y --enablerepo=epel openblas atlas python27-pip python27-devel # python27-numpy 
     sudo  pip install --upgrade pip
-    /usr/local/bin/pip install tensorflow
+    /usr/local/bin/pip install tensorflow keras
 fi
 # Disable Transparent Huge Pages (THP)
 # THP can result in system thrashing (high sys usage) due to frequent defrags of memory.

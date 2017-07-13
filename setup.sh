@@ -15,7 +15,7 @@ else
     sudo alternatives --set python /usr/bin/python2.7
     sudo yum install -y --enablerepo=epel openblas atlas python27-matplotlib python27-pip python27-devel # python27-numpy 
     sudo  pip install --upgrade pip
-    /usr/local/bin/pip install tensorflow
+    /usr/local/bin/pip install tensorflow keras
     # add spark to path
     sed -i 's!SCALA_HOME/bin$!SCALA_HOME/bin:/root/spark/bin!' /root/.bash_profile
     sudo /usr/sbin/alternatives --auto java
